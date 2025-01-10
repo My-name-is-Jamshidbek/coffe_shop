@@ -12,8 +12,19 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Asosiy</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Biz haqimizda</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('gallery') }}">Coffee turlari</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('services.index') }}">Xizmatlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('servis') }}">Xizmatlar</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Aloqa</a></li>
+                    @if(Auth::check())
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" class="nav-link" method="post">
+                                @csrf
+                                <button type="submit" style="background-color: red; color: white; border-radius: 5px; padding: 2px">Chiqsh</button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Kirish</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Royxatdan otish</a></li>
+                    @endif
                 </ul>
             </div>
         </nav>

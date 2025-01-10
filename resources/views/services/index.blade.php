@@ -13,11 +13,12 @@
                 </div>
             </div>
 
-            <!-- Add Service Button -->
-            <div class="mb-3">
-                <a href="{{ route('services.create') }}" class="btn btn-primary">Qoshish</a>
-            </div>
-
+            @if(Auth::check())
+                <!-- Add Service Button -->
+                <div class="mb-3">
+                    <a href="{{ route('services.create') }}" class="btn btn-primary">Qoshish</a>
+                </div>
+            @endif
             <!-- Services Listing -->
             <div class="services_section_2">
                 <div class="row">
@@ -30,15 +31,17 @@
                                 <h3 class="decorate_text">{{ $service->title }}</h3>
                                 <p class="tation_text">{{ $service->description }}</p>
 
-                                <!-- Edit and Delete Buttons -->
-                                <div class="mt-3">
-                                    <a href="{{ route('services.edit', $service->id) }}" class="btn btn-warning btn-sm">Ozgartirish</a>
-                                    <form action="{{ route('services.destroy', $service->id) }}" method="POST" class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Ochirish</button>
-                                    </form>
-                                </div>
+                                @if(Auth::check())
+                                    <!-- Edit and Delete Buttons -->
+                                    <div class="mt-3">
+                                        <a href="{{ route('services.edit', $service->id) }}" class="btn btn-warning btn-sm">Ozgartirish</a>
+                                        <form action="{{ route('services.destroy', $service->id) }}" method="POST" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Ochirish</button>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach
